@@ -2,19 +2,21 @@ import java.util.*;
 
 class Solution {
     public String solution(String s) {
-        String[] nums = s.split(" ");
-        int n = nums.length;
-        int[] arr = new int[n];
+        String answer = "";
+        String[] arr = s.split("\\s+");
+        int maxNum = Integer.parseInt(arr[0]);
+        int minNum = Integer.parseInt(arr[0]);
         
-        for (int i = 0; i < n; i++) {
-            arr[i] = Integer.parseInt(nums[i]);
+        for (int i = 0; i < arr.length; i++) {
+            int cur = Integer.parseInt(arr[i]);
+            if (cur < minNum) {
+                minNum = cur;
+            } else if (cur > maxNum) {
+                maxNum = cur;
+            }
         }
-        int maxNum = Arrays.stream(arr).max().getAsInt();
-        int minNum = Arrays.stream(arr).min().getAsInt();
+        answer = minNum + " " + maxNum;
         
-        String maxStr = Integer.toString(maxNum);
-        String minStr = Integer.toString(minNum);
-        String res = minStr+" "+maxStr;
-        return res;
+        return answer;
     }
 }
